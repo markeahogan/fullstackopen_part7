@@ -13,6 +13,8 @@ import loginService from './services/loginService';
 import blogService from './services/blogs';
 import  { useField } from './hooks';
 
+import { getAll } from './reducers/blogsReducer';
+
 function App() {
 
     const USER_LOCAL = 'loggedBlogUser';
@@ -30,7 +32,7 @@ function App() {
     const createBlogFormRef = React.createRef();
 
     useEffect(() => {
-        blogService.getAll().then(x => setBlogs(x));
+        getAll();
     }, []);
 
     useEffect(() => {
@@ -118,14 +120,14 @@ function App() {
 
         <div className="App">
             <Notification />
-            {user===null && <LoginForm usernameField={username} passwordField={password} submit={() => loginWithDetails()} />}
+            {user===null && <LoginForm />}
             {user!==null &&
       (<>
         <UserDetails user={user} logOut={logOut} />
         <Togglable buttonLabel = {'Create blog'} ref={createBlogFormRef}>
             <CreateBlogForm title={title} author={author} url={url} submit={() => createBlog()}/>
         </Togglable>
-        <BlogsList {...{ blogs, incrementLikes, removeBlog, currentUser:user }}  />
+        <BlogsList />
         </>)
             }
         </div>

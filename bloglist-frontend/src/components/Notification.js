@@ -12,10 +12,6 @@ const Notification = ({ message, style }) =>
     );
 };
 
-Notification.propTypes = {
-    message: PropTypes.string.isRequired
-};
-
 const mapStateToProps = (state) => {
     return {...state.notification}
 }

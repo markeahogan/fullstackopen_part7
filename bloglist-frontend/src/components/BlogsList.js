@@ -1,15 +1,33 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { connect } from 'react-redux';
 import Blog from './Blog';
+import { getAll } from '../reducers/blogsReducer';
 
-const BlogsList = ({ blogs, incrementLikes, removeBlog, currentUser }) => {
+const BlogsList = ({ blogs, getAll }) => {
+
+    useEffect(() => {
+        getAll();
+    }, []);
+
     const sortedBlogs = [...blogs].sort((x, y) => y.likes - x.likes);
+
     return (
      <>
-        {sortedBlogs.map(x => <Blog key={x.id} blog={x}
-            incrementLikes={incrementLikes} remove={removeBlog}
-            currentUser={currentUser}/>)}
+        {sortedBlogs.map(x => 
+            <Blog key={x.id} blog={x} />
+        )}
      </>
     );
 };
 
-export default BlogsList;
+const mapStateToProps = (state) => {
+    return {
+        blogs: state.blogs
+    }
+}
+
+const mapDispatchToProps = {
+    getAll
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BlogsList);

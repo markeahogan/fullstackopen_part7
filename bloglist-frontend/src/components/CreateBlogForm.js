@@ -1,9 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import TextField from './TextField';
 import { create as createBlog } from '../reducers/blogsReducer';
 import { useTextField } from '../hooks/useTextField';
 
-const CreateBlogForm = () => {
+const CreateBlogForm = ({createBlog}) => {
 
     const title = useTextField();
     const author = useTextField();
@@ -34,4 +35,4 @@ const CreateBlogForm = () => {
     );
 };
 
-export default CreateBlogForm;
+export default connect(null, {createBlog})(CreateBlogForm);
