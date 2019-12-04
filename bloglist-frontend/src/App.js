@@ -4,8 +4,10 @@ import LoginForm from './components/LoginForm';
 import BlogsList from './components/BlogsList';
 import Togglable from './components/Togglable';
 import UserDetails from './components/UserDetails';
-import Notification from './components/Notification';
 import CreateBlogForm from './components/CreateBlogForm';
+
+import {setNotification} from './reducers/notificationReducer';
+import Notification from './components/Notification';
 
 import loginService from './services/loginService';
 import blogService from './services/blogs';
@@ -16,7 +18,6 @@ function App() {
     const USER_LOCAL = 'loggedBlogUser';
 
     const [blogs, setBlogs] = useState([]);
-    const [notification, setNotification] = useState(null);
 
     const [user, setUser] = useState(null);
     const username = useField('text');
@@ -111,13 +112,12 @@ function App() {
 
     const notify = (message, isError) => {
         setNotification({ message, style:(isError ? 'error' : 'success') });
-        setTimeout(() => setNotification(null), 1000);
     };
 
     return (
 
         <div className="App">
-            {notification && <Notification {...notification} /> }
+            <Notification />
             {user===null && <LoginForm usernameField={username} passwordField={password} submit={() => loginWithDetails()} />}
             {user!==null &&
       (<>
