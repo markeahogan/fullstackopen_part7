@@ -1,5 +1,4 @@
 import loginService from '../services/loginService';
-
 const USER_LOCAL = 'loggedBlogUser';
 
 export const login = (userDetails) => {

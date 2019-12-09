@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { like, remove } from '../reducers/blogsReducer';
 
 const Blog = ({ blog, like, remove, currentUser }) => {
-    const [expanded, setExpanded] = useState(false);
+
+    const [expanded, setExpanded] = useState(false);    
 
     const blogStyle = {
         paddingTop: 10,
