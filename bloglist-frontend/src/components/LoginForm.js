@@ -1,17 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TextField from './TextField';
-import { login } from '../reducers/userReducer';
+import { tryLoginWithDetails } from '../reducers/userReducer';
 import { useTextField } from '../hooks/useTextField';
 
-const LoginForm = ({ login }) => {
+const LoginForm = ({ tryLoginWithDetails }) => {
 
     const username = useTextField();
     const password = useTextField();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        login({username, password});
+        tryLoginWithDetails({username, password});
         username.clear();
         password.clear();
     };
@@ -27,7 +27,7 @@ const LoginForm = ({ login }) => {
 };
 
 const mapDispatchToProps = {
-    login
+    tryLoginWithDetails
 }
 
 export default connect(null, mapDispatchToProps)(LoginForm);

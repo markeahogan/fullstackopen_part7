@@ -7,10 +7,8 @@ import UserDetails from './components/UserDetails';
 import CreateBlogForm from './components/CreateBlogForm';
 import Notification from './components/Notification';
 
-import loginService from './services/loginService';
-import blogService from './services/blogs';
 import { getAll } from './reducers/blogsReducer';
-//todo use userreducer here to login with local storage
+import { tryLoginWithLocalStorage } from './reducers/userReducer';
 
 function App() {
 
@@ -19,12 +17,7 @@ function App() {
     }, []);
 
     useEffect(() => {
-        const loggedUserJSON = window.localStorage.getItem(USER_LOCAL);
-        if (loggedUserJSON) {
-            const user = JSON.parse(loggedUserJSON);
-            setUser(user);
-            blogService.setToken(user.token);
-        }
+        tryLoginWithLocalStorage();
     }, []);
 
     return (
