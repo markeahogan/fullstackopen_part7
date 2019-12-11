@@ -13,7 +13,7 @@ const UserDetails = ({ user, logOut }) => {
 
 const mapStateToProps = state => {
     return {
-        user:state.user
+        user:state.user.current
     };
 }
 

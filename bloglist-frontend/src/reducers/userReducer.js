@@ -32,13 +32,17 @@ export const logout = () => {
     }
 }
 
-const initialState = '';
+const initialState = {
+    users:[], 
+    current:null
+};
+
 const reducer = (state = initialState, action) => {
     switch(action.type){
         case 'LOGIN':
-            return action.user;
+            return {...state, current:action.user};
         case 'LOGOUT':
-            return null;
+            return {...state, current:null};
     }
     return state;
 }
