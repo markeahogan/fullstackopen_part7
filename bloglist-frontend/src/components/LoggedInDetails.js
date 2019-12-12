@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../reducers/userReducer';
 
-const UserDetails = ({ user, logOut }) => {
+const LoggedInDetails = ({ user, logout }) => {
     return (
      <>
         <h1>blogs</h1>
@@ -21,4 +21,4 @@ const mapDispatchToProps = {
     logout
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(LoggedInDetails);

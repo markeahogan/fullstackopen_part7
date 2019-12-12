@@ -6,7 +6,7 @@ import LoginForm from './components/LoginForm';
 import BlogsList from './components/BlogsList';
 import UserList from './components/UserList';
 import Togglable from './components/Togglable';
-import UserDetails from './components/UserDetails';
+import LoggedInDetails from './components/LoggedInDetails';
 import CreateBlogForm from './components/CreateBlogForm';
 import Notification from './components/Notification';
 import SingleUserPage from './components/SingleUserPage';
@@ -46,7 +46,7 @@ function App() {
                 {user===null && <LoginForm />}
                 {user!==null && (
                 <>
-                    <UserDetails />
+                    <LoggedInDetails />
                     <Route exact path='/' render={BlogsPage} />   
                     <Route exact path='/users' render={UsersPage} />
                     <Route path='/users/:id' render={() => SingleUserPage(match.params.id)} />

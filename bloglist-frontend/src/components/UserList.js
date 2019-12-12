@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 
 const UserList = ({users}) => {
@@ -6,7 +7,7 @@ const UserList = ({users}) => {
         <table>
             <tr><td></td><td>blogs created</td></tr>
             (users.map(x => (
-            <tr><td>x.name</td><td>x.blogs</td></tr>
+            <tr><td><Link to={`/users/${x.id}`}>x.name</Link></td><td>x.blogs</td></tr>
             )))
         </table>
     )
@@ -14,7 +15,7 @@ const UserList = ({users}) => {
 
 const mapStateToProps = state => {
     return {
-        users: state.users
+        users: state.users.users
     }
 }
 
