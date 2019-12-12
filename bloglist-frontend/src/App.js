@@ -10,6 +10,8 @@ import LoggedInDetails from './components/LoggedInDetails';
 import CreateBlogForm from './components/CreateBlogForm';
 import Notification from './components/Notification';
 import SingleUserPage from './components/SingleUserPage';
+import SingleBlogPage from './components/SingleBlogPage';
+
 import { getAll as getAllBlogs } from './reducers/blogsReducer';
 import { tryLoginWithLocalStorage } from './reducers/userReducer';
 
@@ -49,7 +51,8 @@ function App() {
                     <LoggedInDetails />
                     <Route exact path='/' render={BlogsPage} />   
                     <Route exact path='/users' render={UsersPage} />
-                    <Route path='/users/:id' render={() => SingleUserPage(match.params.id)} />
+                    <Route path='/users/:id' render={(match) => SingleUserPage(match.params.id)} />
+                    <Route path='/blogs/:id' render={(match) => SingleBlogPage(match.params.id)} />
                 </>
                 )}
             </div>
