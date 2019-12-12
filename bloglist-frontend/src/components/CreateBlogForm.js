@@ -4,7 +4,7 @@ import TextField from './TextField';
 import { create as createBlog } from '../reducers/blogsReducer';
 import { useTextField } from '../hooks/useTextField';
 
-const CreateBlogForm = ({createBlog}) => {
+const CreateBlogForm = ({user, createBlog}) => {
 
     const title = useTextField();
     const author = useTextField();
@@ -15,7 +15,8 @@ const CreateBlogForm = ({createBlog}) => {
         createBlog({
             title:title.value,
             author:author.value,
-            url:url.value
+            url:url.value,
+            user
         });
         title.clear();
         author.clear();
@@ -35,4 +36,10 @@ const CreateBlogForm = ({createBlog}) => {
     );
 };
 
-export default connect(null, {createBlog})(CreateBlogForm);
+const mapStateToProps = (state) => {
+    return{
+        user: state.users.current
+    }
+}
+
+export default connect(mapStateToProps, {createBlog})(CreateBlogForm);
