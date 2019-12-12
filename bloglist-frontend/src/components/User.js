@@ -6,7 +6,7 @@ const User = ({user, blogs}) => {
     <>
     <h1>{user.name}</h1>
     <li>
-        (blogs.map(x => <ul>{x.title}</ul>))
+        {blogs.map(x => <ul>{x.title}</ul>)}
     </li>
     </>
     );

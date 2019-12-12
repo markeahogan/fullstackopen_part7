@@ -1,12 +1,15 @@
 import loginService from '../services/loginService';
+import blogService from '../services/blogs';
 const USER_LOCAL = 'loggedBlogUser';
 
 export const tryLoginWithLocalStorage = () => {
     return async dispatch => {
+        console.log("loggedUserJSON");
         const loggedUserJSON = window.localStorage.getItem(USER_LOCAL);
         if (loggedUserJSON) {
             setUser(dispatch, JSON.parse(loggedUserJSON));
         }
+        console.log(loggedUserJSON);
     }
 }
 
@@ -40,7 +43,9 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch(action.type){
         case 'LOGIN':
-            return {...state, current:action.user};
+            const user = {...state, current:action.user};
+            console.log(user);
+            return user;
         case 'LOGOUT':
             return {...state, current:null};
     }

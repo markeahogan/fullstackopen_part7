@@ -18,8 +18,8 @@ export const like = (blog) => {
     return async dispatch => {
         const updatedBlog = {...blog};
         updatedBlog.likes++;
-        const result = await blogsService.update(updatedBlog);
-        dispatch({type:'UPDATE',blog:result});
+        await blogsService.update(updatedBlog);
+        dispatch({type:'UPDATE',blog:updatedBlog});
     }
 }
 
@@ -39,7 +39,7 @@ const reducer = (state = initialState, action) => {
         case 'ADD':
             return state.concat(action.blog);
         case 'UPDATE':
-            return state.map(x => x.id == action.blog.id ? action.blog : x);
+            return state.map(x => x.id === action.blog.id ? action.blog : x);
     }
     return state;
 }

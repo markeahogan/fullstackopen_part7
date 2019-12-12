@@ -1,23 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { like, remove } from '../reducers/blogsReducer';
 
-const SingleBlogPage = ({blog, deletable, like, remove}) => {
+const SingleBlogPage = ({blog, deletable, like, remove, history}) => {    
+
+    const removeAndGoBack = (blog) => {
+        remove(blog);
+        history.push('/');
+    }
+
+    if (!blog){ return null }
+    
     return (
         <>
             <h1>{blog.title}</h1>
             <Link to={blog.url}>{blog.url}</Link>
             <div>{blog.likes} likes <button onClick={()=>like(blog)}>like</button></div>
             <div>by {blog.author}</div>
-            {deletable && <button onClick={() => remove(blog)}>remove</button>}
+            {deletable && <button onClick={() => removeAndGoBack(blog)}>remove</button>}
         </>
     )
 }
 
-const mapStateToProps = (state, {blogID}) => {
-    const blog = state.blogs.find(x => x.id === blogID);
-    const deletable = state.users.current.id === blog.user.id;
+const mapStateToProps = (state, {id}) => {
+    const blog = state.blogs.find(x => x.id === id);
+    const deletable = state.users.current.name === (blog && blog.author);
     return {
         blog,
         deletable
@@ -29,4 +37,4 @@ const mapDispatchToProps = {
     remove
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SingleBlogPage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SingleBlogPage));

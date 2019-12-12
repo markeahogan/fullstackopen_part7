@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'readt-redux';
+import { connect } from 'react-redux';
 import User from './User';
 
 const SingleUserPage = ({user, blogs}) => {

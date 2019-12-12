@@ -15,29 +15,34 @@ import SingleBlogPage from './components/SingleBlogPage';
 import { getAll as getAllBlogs } from './reducers/blogsReducer';
 import { tryLoginWithLocalStorage } from './reducers/userReducer';
 
-function App() {
+function App({user, tryLoginWithLocalStorage, getAllBlogs}) {
 
     useEffect(() => {
         getAllBlogs();
     }, []);
 
     useEffect(() => {
+        console.log("login?");
         tryLoginWithLocalStorage();
     }, []);
 
     const BlogsPage = () => {
         return (
-            <Togglable buttonLabel = {'Create blog'} >
-                <CreateBlogForm />
-            </Togglable>
-            <BlogsList />
+            <>
+                <Togglable buttonLabel = {'Create blog'} >
+                    <CreateBlogForm />
+                </Togglable>
+                <BlogsList />
+            </>
         );
     };
 
     const UsersPage = () => {
         return (
-            <h1>Users</h1>
-            <UserList />
+            <>
+                <h1>Users</h1>
+                <UserList />
+            </>
         )
     }
 
@@ -51,8 +56,8 @@ function App() {
                     <LoggedInDetails />
                     <Route exact path='/' render={BlogsPage} />   
                     <Route exact path='/users' render={UsersPage} />
-                    <Route path='/users/:id' render={(match) => SingleUserPage(match.params.id)} />
-                    <Route path='/blogs/:id' render={(match) => SingleBlogPage(match.params.id)} />
+                    <Route path='/users/:id' render={({match}) => <SingleUserPage id={match.params.id} />} />
+                <Route path='/blogs/:id' render={({match}) => <SingleBlogPage id={match.params.id} /> } />
                 </>
                 )}
             </div>
@@ -60,10 +65,15 @@ function App() {
     );
 }
 
-const mstp = state => {
+const mapStateToProps = state => {
     return {
-        user:state.users.current;
+        user:state.users.current
     }
 }
 
-export default connect(mstp)(App);
+const mapDispatchToProps = {
+    getAllBlogs,
+    tryLoginWithLocalStorage
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
