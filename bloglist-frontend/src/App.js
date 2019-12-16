@@ -6,7 +6,6 @@ import LoginForm from './components/LoginForm';
 import BlogsList from './components/BlogsList';
 import UserList from './components/UserList';
 import Togglable from './components/Togglable';
-import LoggedInDetails from './components/LoggedInDetails';
 import CreateBlogForm from './components/CreateBlogForm';
 import Notification from './components/Notification';
 import SingleUserPage from './components/SingleUserPage';
@@ -14,6 +13,7 @@ import SingleBlogPage from './components/SingleBlogPage';
 
 import { getAll as getAllBlogs } from './reducers/blogsReducer';
 import { tryLoginWithLocalStorage } from './reducers/userReducer';
+import Navigation from './components/Navigation';
 
 function App({user, tryLoginWithLocalStorage, getAllBlogs}) {
 
@@ -53,7 +53,7 @@ function App({user, tryLoginWithLocalStorage, getAllBlogs}) {
                 {user===null && <LoginForm />}
                 {user!==null && (
                 <>
-                    <LoggedInDetails />
+                    <Navigation />
                     <Route exact path='/' render={BlogsPage} />   
                     <Route exact path='/users' render={UsersPage} />
                     <Route path='/users/:id' render={({match}) => <SingleUserPage id={match.params.id} />} />
