@@ -38,7 +38,7 @@ const SingleBlogPage = ({blog, deletable, like, remove, history, comments, addCo
                 <button type='submit'>add comment</button>
             </form>
             <ul>
-                {comments.map(x => <li>{x}</li>)}
+                {comments.map((x, index) => <li key={index}>{x}</li>)}
             </ul>
         </>
     )

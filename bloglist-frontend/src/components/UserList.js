@@ -4,12 +4,10 @@ import {connect} from 'react-redux';
 
 const UserList = ({users}) => {
     return (
-        <table>
+        <table><tbody>
             <tr><td></td><td>blogs created</td></tr>
-            {users.map(x => (
-            <tr><td><Link to={`/users/${x.id}`}>x.name</Link></td><td>x.blogs</td></tr>
-            ))}
-        </table>
+            {users.map(x => (<tr key={x.id}><td><Link to={`/users/${x.id}`}>{x.name}</Link></td><td>{x.blogs.length}</td></tr>))}
+        </tbody></table>
     )
 }
 
