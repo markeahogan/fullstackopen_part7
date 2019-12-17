@@ -12,18 +12,18 @@ import SingleUserPage from './components/SingleUserPage';
 import SingleBlogPage from './components/SingleBlogPage';
 
 import { getAll as getAllBlogs } from './reducers/blogsReducer';
-import { tryLoginWithLocalStorage } from './reducers/userReducer';
+import { tryLoginWithLocalStorage, getAll as getAllUsers } from './reducers/userReducer';
 import Navigation from './components/Navigation';
 
-function App({user, tryLoginWithLocalStorage, getAllBlogs}) {
+function App({user, tryLoginWithLocalStorage, getAllBlogs, getAllUsers}) {
 
     useEffect(() => {
         getAllBlogs();
     }, []);
 
     useEffect(() => {
-        console.log("login?");
         tryLoginWithLocalStorage();
+        getAllUsers();
     }, []);
 
     const BlogsPage = () => {
@@ -73,6 +73,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     getAllBlogs,
+    getAllUsers,
     tryLoginWithLocalStorage
 }
 
