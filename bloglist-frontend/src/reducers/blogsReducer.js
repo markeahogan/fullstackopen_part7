@@ -31,6 +31,13 @@ export const remove = (blog) => {
     }
 }
 
+export const addComment = (blog, comment) => {
+    return async dispatch => {
+        const updatedBlog = await blogsService.addComment(blog, comment);
+        dispatch({type:'UPDATE',blog:updatedBlog});
+    }
+}
+
 const initialState = [];
 const reducer = (state = initialState, action) => {
     switch(action.type){
