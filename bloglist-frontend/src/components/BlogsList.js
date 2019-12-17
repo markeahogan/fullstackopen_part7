@@ -1,13 +1,8 @@
 import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 import Blog from './Blog';
-import { getAll } from '../reducers/blogsReducer';
 
-const BlogsList = ({ blogs, getAll }) => {
-
-    useEffect(() => {
-        getAll();
-    }, []);
+const BlogsList = ({ blogs }) => {
 
     const sortedBlogs = [...blogs].sort((x, y) => y.likes - x.likes);
 
@@ -26,8 +21,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = {
-    getAll
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(BlogsList);
+export default connect(mapStateToProps)(BlogsList);

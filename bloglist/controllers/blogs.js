@@ -39,6 +39,24 @@ blogsRouter.post('/', async (req, res, next) => {
     }
 });
 
+blogsRouter.post('/:id/comments', async (req, res, next) => {
+    const comment = req.body;
+    const _id = req.params.id;    
+    try{
+        const blog = await Blog.findOne({_id});
+        if (blog.comments){
+            blog.comments.push(comment);
+        }else{
+            blog.comments = [comment];
+        }
+        const savedBlog = await blog.save();
+        res.status(201).json(savedBlog);
+    }
+    catch(e){
+        next(e);
+    }
+});
+
 blogsRouter.delete('/:id', async (req, res, next) => {
     try{
         const decodedToken = jwt.verify(req.token, process.env.SECRET);
