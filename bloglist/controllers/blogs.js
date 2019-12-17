@@ -40,8 +40,9 @@ blogsRouter.post('/', async (req, res, next) => {
 });
 
 blogsRouter.post('/:id/comments', async (req, res, next) => {
-    const comment = req.body;
+    const comment = req.body.comment;
     const _id = req.params.id;    
+    console.log(req.body);
     try{
         const blog = await Blog.findOne({_id});
         if (blog.comments){
