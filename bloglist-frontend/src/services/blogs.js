@@ -25,7 +25,7 @@ const update = async (blog) => {
 };
 
 const addComment = async (blog, comment) => {
-    const response = await axios.post(`${baseUrl}/${blog.id}/comments`, comment, getConfig());
+    const response = await axios.post(`${baseUrl}/${blog.id}/comments`, {comment}, getConfig());
     return response.data;
 }
 

@@ -7,7 +7,7 @@ import { like, remove, addComment } from '../reducers/blogsReducer';
 import { useTextField } from '../hooks/useTextField';
 import TextField from './TextField';
 
-const SingleBlogPage = ({blog, deletable, like, remove, history, addComment}) => {    
+const SingleBlogPage = ({blog, deletable, like, remove, history, comments, addComment}) => {    
 
     const newComment = useTextField();
     
@@ -22,6 +22,7 @@ const SingleBlogPage = ({blog, deletable, like, remove, history, addComment}) =>
         e.preventDefault();
         const comment = newComment.value;
         addComment(blog, comment);
+        newComment.clear();
     }
     
     return (
@@ -37,7 +38,7 @@ const SingleBlogPage = ({blog, deletable, like, remove, history, addComment}) =>
                 <button type='submit'>add comment</button>
             </form>
             <ul>
-                {comments.map(x => <le>{x}</le>)}
+                {comments.map(x => <li>{x}</li>)}
             </ul>
         </>
     )
@@ -49,7 +50,7 @@ const mapStateToProps = (state, {id}) => {
     return {
         blog,
         deletable,
-        comments:blog.comments || []
+        comments:(blog && blog.comments) || []
     };
 };
 
