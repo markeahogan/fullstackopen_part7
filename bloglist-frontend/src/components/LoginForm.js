@@ -11,7 +11,7 @@ const LoginForm = ({ tryLoginWithDetails }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        tryLoginWithDetails({username, password});
+        tryLoginWithDetails({username:username.value, password:password.value});
         username.clear();
         password.clear();
     };
