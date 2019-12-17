@@ -57,7 +57,7 @@ function App({user, tryLoginWithLocalStorage, getAllBlogs, getAllUsers}) {
                     <Route exact path='/' render={BlogsPage} />   
                     <Route exact path='/users' render={UsersPage} />
                     <Route path='/users/:id' render={({match}) => <SingleUserPage id={match.params.id} />} />
-                <Route path='/blogs/:id' render={({match}) => <SingleBlogPage id={match.params.id} /> } />
+                    <Route path='/blogs/:id' render={({match}) => <SingleBlogPage id={match.params.id} /> } />
                 </>
                 )}
             </div>

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import TextField from './TextField';
 import { create as createBlog } from '../reducers/blogsReducer';
 import { useTextField } from '../hooks/useTextField';
+import { Form, Button } from 'react-bootstrap';
 
 const CreateBlogForm = ({user, createBlog}) => {
 
@@ -25,13 +26,15 @@ const CreateBlogForm = ({user, createBlog}) => {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
                 <h2>Create blog</h2>
                 <TextField label={'Title'} {...title} />
                 <TextField label={'Author'} {...author} />
                 <TextField label={'URL'} {...url} />
-                <input type="submit" value="create" />
-            </form>
+                <Button variant="primary" type="submit">
+                    Create
+                </Button>
+            </Form>
         </>
     );
 };

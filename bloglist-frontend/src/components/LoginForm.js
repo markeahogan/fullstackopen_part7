@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import TextField from './TextField';
 import { tryLoginWithDetails } from '../reducers/userReducer';
 import { useTextField } from '../hooks/useTextField';
+import { Form, Button } from 'react-bootstrap';
 
 const LoginForm = ({ tryLoginWithDetails }) => {
 
@@ -17,12 +18,14 @@ const LoginForm = ({ tryLoginWithDetails }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
             <h1>log in to application</h1>
             <TextField label={'username'} {...username} />
-            <TextField label={'password'} {...password} />
-            <input type="submit" value="login" />
-        </form>
+            <TextField label={'password'} {...password} />            
+            <Button variant="primary" type="submit">
+                    Login
+            </Button>
+        </Form>
     );
 };
 

@@ -6,10 +6,12 @@ import App from './App';
 import store from './store';
 
 const render = () => {
-    ReactDOM.render(
-        <Provider store={store}>
-            <App />
-        </Provider>,
+    ReactDOM.render(        
+        <div className="container">
+            <Provider store={store}>
+                <App />
+            </Provider>
+        </div>,
         document.getElementById('root'));
 }
 
