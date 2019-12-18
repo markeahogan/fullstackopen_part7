@@ -29,7 +29,8 @@ function App({user, tryLoginWithLocalStorage, getAllBlogs, getAllUsers}) {
     const BlogsPage = () => {
         return (
             <>
-                <Togglable buttonLabel = {'Create blog'} >
+                <h1 style={{marginTop:10}}>Blogs</h1>
+                <Togglable buttonLabel = {'Create Blog'} >
                     <CreateBlogForm />
                 </Togglable>
                 <BlogsList />
@@ -40,7 +41,7 @@ function App({user, tryLoginWithLocalStorage, getAllBlogs, getAllUsers}) {
     const UsersPage = () => {
         return (
             <>
-                <h1>Users</h1>
+                <h1 style={{marginTop:10}}>Users</h1>
                 <UserList />
             </>
         )
