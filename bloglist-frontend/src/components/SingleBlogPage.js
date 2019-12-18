@@ -6,6 +6,7 @@ import { like, remove, addComment } from '../reducers/blogsReducer';
 
 import { useTextField } from '../hooks/useTextField';
 import TextField from './TextField';
+import { Form, Button } from 'react-bootstrap';
 
 const SingleBlogPage = ({blog, deletable, like, remove, history, comments, addComment}) => {    
 
@@ -21,6 +22,8 @@ const SingleBlogPage = ({blog, deletable, like, remove, history, comments, addCo
     const handleSubmit = (e) => {
         e.preventDefault();
         const comment = newComment.value;
+        if (!comment){return;}
+
         addComment(blog, comment);
         newComment.clear();
     }
@@ -33,10 +36,10 @@ const SingleBlogPage = ({blog, deletable, like, remove, history, comments, addCo
             <div>by {blog.author}</div>
             {deletable && <button onClick={removeAndGoBack}>remove</button>}
             <h4>comments</h4>
-            <form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
                 <TextField noWrapper {...newComment} />
-                <button type='submit'>add comment</button>
-            </form>
+                <Button type='submit'>add comment</Button>
+            </Form>
             <ul>
                 {comments.map((x, index) => <li key={index}>{x}</li>)}
             </ul>
