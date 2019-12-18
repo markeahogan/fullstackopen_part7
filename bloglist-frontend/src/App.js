@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Link, withRouter } from 'react-router-dom';
-import {connect} from 'react-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import LoginForm from './components/LoginForm';
 import BlogsList from './components/BlogsList';
@@ -15,7 +15,7 @@ import { getAll as getAllBlogs } from './reducers/blogsReducer';
 import { tryLoginWithLocalStorage, getAll as getAllUsers } from './reducers/userReducer';
 import Navigation from './components/Navigation';
 
-function App({user, tryLoginWithLocalStorage, getAllBlogs, getAllUsers}) {
+function App({ user, tryLoginWithLocalStorage, getAllBlogs, getAllUsers }) {
 
     useEffect(() => {
         getAllBlogs();
@@ -29,7 +29,7 @@ function App({user, tryLoginWithLocalStorage, getAllBlogs, getAllUsers}) {
     const BlogsPage = () => {
         return (
             <>
-                <h1 style={{marginTop:10}}>Blogs</h1>
+                <h1 style={{ marginTop:10 }}>Blogs</h1>
                 <Togglable buttonLabel = {'Create Blog'} >
                     <CreateBlogForm />
                 </Togglable>
@@ -41,11 +41,11 @@ function App({user, tryLoginWithLocalStorage, getAllBlogs, getAllUsers}) {
     const UsersPage = () => {
         return (
             <>
-                <h1 style={{marginTop:10}}>Users</h1>
+                <h1 style={{ marginTop:10 }}>Users</h1>
                 <UserList />
             </>
-        )
-    }
+        );
+    };
 
     return (
         <Router>
@@ -55,10 +55,10 @@ function App({user, tryLoginWithLocalStorage, getAllBlogs, getAllUsers}) {
                 {user!==null && (
                 <>
                     <Navigation />
-                    <Route exact path='/' render={BlogsPage} />   
+                    <Route exact path='/' render={BlogsPage} />
                     <Route exact path='/users' render={UsersPage} />
-                    <Route path='/users/:id' render={({match}) => <SingleUserPage id={match.params.id} />} />
-                    <Route path='/blogs/:id' render={({match}) => <SingleBlogPage id={match.params.id} /> } />
+                    <Route path='/users/:id' render={({ match }) => <SingleUserPage id={match.params.id} />} />
+                    <Route path='/blogs/:id' render={({ match }) => <SingleBlogPage id={match.params.id} /> } />
                 </>
                 )}
             </div>
@@ -69,13 +69,13 @@ function App({user, tryLoginWithLocalStorage, getAllBlogs, getAllUsers}) {
 const mapStateToProps = state => {
     return {
         user:state.users.current
-    }
-}
+    };
+};
 
 const mapDispatchToProps = {
     getAllBlogs,
     getAllUsers,
     tryLoginWithLocalStorage
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

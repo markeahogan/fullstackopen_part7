@@ -12,16 +12,16 @@ const LoginForm = ({ tryLoginWithDetails }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        tryLoginWithDetails({username:username.value, password:password.value});
+        tryLoginWithDetails({ username:username.value, password:password.value });
         username.clear();
         password.clear();
     };
 
     return (
         <Form onSubmit={handleSubmit}>
-            <h1 style={{marginTop:40}}>Log in to application</h1>
+            <h1 style={{ marginTop:40 }}>Log in to application</h1>
             <TextField label={'username'} {...username} />
-            <TextField label={'password'} type="password" {...password} />            
+            <TextField label={'password'} type="password" {...password} />
             <Button variant="primary" type="submit">
                     Login
             </Button>
@@ -31,6 +31,6 @@ const LoginForm = ({ tryLoginWithDetails }) => {
 
 const mapDispatchToProps = {
     tryLoginWithDetails
-}
+};
 
 export default connect(null, mapDispatchToProps)(LoginForm);

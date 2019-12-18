@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import './Notification.css';
 
 const Notification = ({ message, style }) =>
@@ -12,7 +12,7 @@ const Notification = ({ message, style }) =>
 };
 
 const mapStateToProps = (state) => {
-    return {...state.notification}
-}
+    return { ...state.notification };
+};
 
 export default connect(mapStateToProps)(Notification);

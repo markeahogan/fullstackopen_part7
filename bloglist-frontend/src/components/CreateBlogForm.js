@@ -5,7 +5,7 @@ import { create as createBlog } from '../reducers/blogsReducer';
 import { useTextField } from '../hooks/useTextField';
 import { Form, Button } from 'react-bootstrap';
 
-const CreateBlogForm = ({user, createBlog}) => {
+const CreateBlogForm = ({ user, createBlog }) => {
 
     const title = useTextField();
     const author = useTextField();
@@ -42,7 +42,7 @@ const CreateBlogForm = ({user, createBlog}) => {
 const mapStateToProps = (state) => {
     return{
         user: state.users.current
-    }
-}
+    };
+};
 
-export default connect(mapStateToProps, {createBlog})(CreateBlogForm);
+export default connect(mapStateToProps, { createBlog })(CreateBlogForm);

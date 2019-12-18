@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Blog = ({ blog }) => {
@@ -9,7 +9,7 @@ const Blog = ({ blog }) => {
         borderWidth: 1,
         marginBottom: 5
     };
-    
+
     return (
         <div style={blogStyle}>
             <Link to={`/blogs/${blog.id}`}>{blog.title}</Link>
