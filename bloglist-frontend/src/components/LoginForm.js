@@ -19,9 +19,9 @@ const LoginForm = ({ tryLoginWithDetails }) => {
 
     return (
         <Form onSubmit={handleSubmit}>
-            <h1>log in to application</h1>
+            <h1 style={{marginTop:40}}>Log in to application</h1>
             <TextField label={'username'} {...username} />
-            <TextField label={'password'} {...password} />            
+            <TextField label={'password'} type="password" {...password} />            
             <Button variant="primary" type="submit">
                     Login
             </Button>

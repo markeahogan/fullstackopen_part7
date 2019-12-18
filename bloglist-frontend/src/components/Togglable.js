@@ -4,8 +4,9 @@ import { Button } from 'react-bootstrap';
 const Togglable = React.forwardRef((props, ref) => {
     const [visible, setVisible] = useState(false);
 
-    const show = { display: '' };
-    const hide = { display: 'none' };
+    const padding = {margin:"20px 0px"};
+    const show = { display: '', ...padding };
+    const hide = { display: 'none', ...padding };
 
     const toggleVisibility = () => {
         setVisible(!visible);
@@ -24,7 +25,8 @@ const Togglable = React.forwardRef((props, ref) => {
       </div>
       <div style={visible ? show : hide}>
           {props.children}
-          <button onClick={() => setVisible(false)}>cancel</button>
+          <div style={{height:4}}></div>
+          <Button variant="outline-primary" onClick={() => setVisible(false)}>Cancel</Button>
       </div>
     </>
     );

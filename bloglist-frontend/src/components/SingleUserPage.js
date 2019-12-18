@@ -1,15 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { ListGroup } from 'react-bootstrap';
 
 const SingleUserPage = ({user, blogs}) => {
     if (!user){return null;}
     return (
         <>
-            <h1>{user.name}</h1>
-            <h2>Added Blogs</h2>
-            <ul>
-                {blogs.map(x => <li>{x.title}</li>)}
-            </ul>
+            <h1 style={{marginTop:10}}>{user.name}</h1>
+            <h3 style={{marginTop:20}}>Added Blogs</h3>
+            <ListGroup>
+                {blogs.map(x => <ListGroup.Item>{x.title}</ListGroup.Item>)}
+            </ListGroup>
         </>
     );
 };

@@ -30,12 +30,12 @@ const SingleBlogPage = ({blog, deletable, like, remove, history, comments, addCo
     
     return (
         <>
-            <h1>{blog.title}</h1>
+            <h1 style={{marginTop:40}}>{blog.title}</h1>
+            <h3> by {blog.author}</h3>
             <Link to={blog.url}>{blog.url}</Link>
-            <div>{blog.likes} likes <button onClick={()=>like(blog)}>like</button></div>
-            <div>by {blog.author}</div>
+            <div style={{marginTop:10}}> <Button variant="outline-dark" onClick={()=>like(blog)}>{blog.likes} likes</Button></div>
             {deletable && <button onClick={removeAndGoBack}>remove</button>}
-            <h4>comments</h4>
+            <h4 style={{marginTop:40}}>Comments</h4>
             <Form onSubmit={handleSubmit}>
                 <TextField noWrapper {...newComment} />
                 <Button type='submit'>add comment</Button>
