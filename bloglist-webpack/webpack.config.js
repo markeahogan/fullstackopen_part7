@@ -18,6 +18,9 @@ const config = (env, argv) => {
           contentBase: path.resolve(__dirname, 'build'),
           compress: true,
           port: 3000,
+          historyApiFallback: {
+            index: 'index.html'
+          }
         },
         module:{
             rules:[
